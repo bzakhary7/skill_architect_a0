@@ -7,6 +7,15 @@ import os
 plugin_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, plugin_root)
 
+# Append local dependencies path to ensure markdown and yaml are found
+site_packages_dir = os.path.join(plugin_root, "python_deps")
+if site_packages_dir not in sys.path:
+    sys.path.insert(0, site_packages_dir)
+
+# Validate imports (will fail natively if dependencies aren't loaded)
+import markdown
+import yaml
+
 from tools.skill_architect_tool import SkillArchitectTool
 
 async def main():

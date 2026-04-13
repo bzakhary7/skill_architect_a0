@@ -1,2 +1,4 @@
 # A0 SkillArchitect dependencies
 # (Python logic primarily delegates to Node.js)
+markdown
+PyYAML

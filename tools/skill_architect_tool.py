@@ -1,6 +1,14 @@
 import subprocess
 import os
+import sys
 import json
+
+# Ensure local python dependencies are in path
+plugin_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+site_packages_dir = os.path.join(plugin_dir, "python_deps")
+if site_packages_dir not in sys.path:
+    sys.path.insert(0, site_packages_dir)
+
 from helpers.tool import Tool, ToolResult
 
 class SkillArchitectTool(Tool):
