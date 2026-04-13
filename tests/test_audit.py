@@ -7,7 +7,7 @@ import os
 plugin_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, plugin_root)
 
-from skills.skill_architect.skill_architect_tool import SkillArchitectTool
+from tools.skill_architect_tool import SkillArchitectTool
 
 async def main():
     print("Initializing SkillArchitectTool...")

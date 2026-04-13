@@ -1,5 +1,5 @@
 name: skill_architect
-title: "SkillArchitect"
+title: "Skill Architect"
 description: "Hardens agent logic through automated evals, testing, and structured audits."
 version: 1.0.0
 settings_sections: [developer]

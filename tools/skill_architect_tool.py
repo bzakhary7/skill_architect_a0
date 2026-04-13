@@ -1,7 +1,7 @@
 import subprocess
 import os
 import json
-from python.helpers.tool import Tool, Response
+from helpers.tool import Tool, ToolResult
 
 class SkillArchitectTool(Tool):
     """
@@ -9,13 +9,13 @@ class SkillArchitectTool(Tool):
     Provides structured refactoring and evaluation of Agent Skills.
     """
     async def execute(self, command: str, **kwargs):
-        # Calculate absolute path to the node logic directory
-        plugin_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        # Calculate absolute path to the plugin root (from tools/skill_architect_tool.py)
+        plugin_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         node_logic_dir = os.path.join(plugin_dir, "node_logic")
         cli_path = os.path.join(node_logic_dir, "cli.ts")
         
         if not os.path.exists(cli_path):
-            return Response(error=f"CLI not found at {cli_path}. Please re-install plugin.")
+            return ToolResult(f"Error: CLI not found at {cli_path}. Please re-install plugin.")
 
         tsx_path = os.path.join(node_logic_dir, "node_modules", ".bin", "tsx")
         
@@ -27,6 +27,6 @@ class SkillArchitectTool(Tool):
         
         try:
             result = subprocess.run(cmd, cwd=node_logic_dir, capture_output=True, text=True, check=True)
-            return Response(message=f"### SkillArchitect Output:\n{result.stdout}")
+            return ToolResult(f"### SkillArchitect Output:\n{result.stdout}")
         except subprocess.CalledProcessError as e:
-            return Response(error=f"CLI Error: {e.stderr}\nOutput: {e.stdout}")
+            return ToolResult(f"CLI Error: {e.stderr}\nOutput: {e.stdout}")
