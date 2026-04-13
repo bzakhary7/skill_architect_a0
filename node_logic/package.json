@@ -1,0 +1,11 @@
+{
+  "name": "skillarchitect-cli",
+  "version": "1.0.0",
+  "description": "SkillArchitect CLI Node logic",
+  "type": "module",
+  "main": "./cli.ts",
+  "dependencies": {
+    "tsx": "^4.7.1",
+    "yaml": "^2.3.4"
+  }
+}
